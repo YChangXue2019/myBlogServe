@@ -5,7 +5,7 @@ myblog
 # 二、数据库表及建表语句
 ## user  （用户表）
 create table user(
-	id int primary key auto_increment,
+    id int primary key auto_increment,
     username varchar(20),
     password varchar(50),
     createAt datetime,
