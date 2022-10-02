@@ -15,7 +15,7 @@ create table user(
 ) auto_increment 1;
 ## blogs （博客表）
 create table blogs(  
-	bid int primary key auto_increment,  
+    bid int primary key auto_increment,  
     cid int,  
     title varchar(50),  
     content longtext,  
