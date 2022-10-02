@@ -58,7 +58,7 @@ const handlerUserRoute=(req,res)=>{
                         }
                     }
                 }else{
-                    return new ErrorModel('您不是管理员，没有权限使用该系统，请联系管理员添加您的操作权限。');
+                    return new ErrorModel('您不是管理员，没有该系统的使用权限，请联系管理员添加您的使用权限。');
                 }
             }
         }).catch(err=>{
