@@ -227,11 +227,12 @@ SELECT DATE_FORMAT(DATE_SUB(NOW(), INTERVAL day_p DAY), '%Y-%m-%d') as all_day;
       date_sub( curdate( ), INTERVAL 1 DAY ) AS dTime UNION
       SELECT
       date_sub( curdate( ), INTERVAL 0 DAY ) AS dTime;
+
 select count(b.bid) from blogs as b  where DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= date(sendtime) group by sendtime;
 select DATE_FORMAT(SUBDATE(NOW(),interval sntable.sn day),'%Y-%m-%d') as statDate
 from (select 0 as sn union select 1 as sn union select 2 union select 3 union select 4 union select 5 union select 6) sntable;
 
--- 查询近七日文章数量
+## 查询近七日文章数量
 select sql_calc_found_rows dTime.statDate as eTime,ifnull(sevevInfo.total,0) as total
 	from (
 		select DATE_FORMAT(SUBDATE(NOW(),interval sntable.sn day),'%Y-%m-%d') as statDate
@@ -254,7 +255,7 @@ select sql_calc_found_rows dTime.statDate as eTime,ifnull(sevevInfo.total,0) as 
         
 
         
--- 查询近七日评论数量
+## 查询近七日评论数量
 select sql_calc_found_rows dTime.statDate as eTime,ifnull(rInfo.rTotal,0) as total
 	from (
 		select DATE_FORMAT(SUBDATE(NOW(),interval sntable.sn day),'%Y-%m-%d') as statDate
@@ -272,7 +273,7 @@ select sql_calc_found_rows dTime.statDate as eTime,ifnull(rInfo.rTotal,0) as tot
         on dTime.statDate=rInfo.rTime 
         group by dTime.statDate 
         order by dTime.statDate asc;
--- 近七日收藏数量
+## 近七日收藏数量
 select sql_calc_found_rows dTime.statDate as eTime,ifnull(ukInfo.ukTotal,0) as total
 	from (
 		select DATE_FORMAT(SUBDATE(NOW(),interval sntable.sn day),'%Y-%m-%d') as statDate
@@ -358,45 +359,45 @@ select * from ulike where bid=1 and lauthor='行者';
 
 
 
-关掉数据库的安全模式
+## 关掉数据库的安全模式
 set sql_safe_updates = off;
 
-向表blogs中插入一条数据
+## 向表blogs中插入一条数据
 
-blogs(对应表的列字段) values(对应列字段的值)
-insert into blogs (title,content,author,createAt,type) values ('HTML介绍','HTML是一种id执行在浏览器端的超文本标记语言','南山行者','12312312312','1');
+### blogs(对应表的列字段) values(对应列字段的值)
+insert into blogs (title,content,author,createAt,type) values ('HTML介绍','HTML是一种id执行在浏览器端的超文本标记语言','用户名','12312312312','1');
 
-查数据
+### 查数据
 
-查myblog数据库中blogs表中的所有数据
+### 查myblog数据库中blogs表中的所有数据
 SELECT * FROM myblog.blogs;
 
-查myblog数据库中blogs表中的id和title数据
+### 查myblog数据库中blogs表中的id和title数据
 SELECT id,title FROM myblog.blogs;
 
 条件查询
-条件查询
-查询类型为1并且author为“南山行者”数据
-SELECT * FROM myblog.blogs where type='1' and author='南山行者';
-查询类型为1或者author为“南山行者”数据
-SELECT * FROM myblog.blogs where type='1' or author='南山行者';
+## 条件查询
+### 查询类型为1并且author为“用户名”数据
+SELECT * FROM myblog.blogs where type='1' and author='用户名';
+### 查询类型为1或者author为“用户名”数据
+SELECT * FROM myblog.blogs where type='1' or author='用户名';
 
-模糊查询
+## 模糊查询
 SELECT * FROM myblog.blogs where author like '%南%';
 
-排序（更具id倒叙排列desc）
+## 排序（更具id倒叙排列desc）
 SELECT * FROM myblog.blogs where author like '%南%' order by id desc;
 
 
-更新（where条件最好是主键）
+## 更新（where条件最好是主键）
 UPDATE myblog.blogs set title='JavaScript语法介绍' where id='1';
 
-如果where条件不是主键可能会报错，需要先执行SET SQL_SAFE_UPDATES = 0;再执行更新语句
+## 如果where条件不是主键可能会报错，需要先执行SET SQL_SAFE_UPDATES = 0;再执行更新语句
 SET SQL_SAFE_UPDATES = 0;
 UPDATE myblog.blogs set title='js' where type='1';
 
 
-删除（如果没有where条件会删除整个表格）
+## 删除（如果没有where条件会删除整个表格）
 delete from myblog.blogs where title='js';
 
 <!-- 软删除 改变状态即可  <>表示不等于 -->
@@ -405,21 +406,21 @@ update myblog.blogs set state=0 where type='1';
 update myblog.blogs set state=0 where type<>'1';
 
 
-##node连接MySql
+## node连接MySql
 
-<!-- 引入mysql模块 -->
+### 引入mysql模块 
 const mysql=require('mysql');
-<!-- 创建连接对象 -->
-const connection=createConnection({
-    host:'localhost',//主机
-    user:'root',//mysql用户名
-    port:3306,//mysql端口号
-    password:'ycx240118',//数据库密码
-    database:'myblog',//数据库名称
+### 创建连接对象
+const connection=createConnection({  
+    host:'localhost',//主机  
+    user:'root',//mysql用户名  
+    port:3306,//mysql端口号  
+    password:'ycx240118',//数据库密码  
+    database:'myblog',//数据库名称  
 })
-<!-- 开始连接 -->
-connection.connect();
-<!-- 执行sql语句 -->
+### 开始连接
+connection.connect();  
+### 执行sql语句 
 const sql=`SELECT * FROM myblog.blogs`;
 connection.query(sql,(err,res)=>{
     if(err){
@@ -429,15 +430,15 @@ connection.query(sql,(err,res)=>{
     console.log(res);
 })
 
-<!-- 关闭连接 -->
+## 关闭连接 
 connection.end();
 
 
 <!-- JSON数据 -->
 {
-    "title":"java技术",
-    "content":"java是后端开发技术",
-    "author":"李四",
-    "type":"1",
-    "createAt":"12312312342"
+    "title":"java技术",  
+    "content":"java是后端开发技术",  
+    "author":"李四",  
+    "type":"1",  
+    "createAt":"12312312342"  
 }
