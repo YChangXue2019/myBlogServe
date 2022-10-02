@@ -14,61 +14,61 @@ create table user(
     avatarUrl varchar(150)
 ) auto_increment 1;
 ## blogs （博客表）
-create table blogs(
-	bid int primary key auto_increment,
-    cid int,
-    title varchar(50),
-    content longtext,
-    author varchar(20),
-    sendtime date,
-    modifiytime datetime default null
-) auto_increment 1;
+create table blogs(  
+	bid int primary key auto_increment,  
+    cid int,  
+    title varchar(50),  
+    content longtext,  
+    author varchar(20),  
+    sendtime date,  
+    modifiytime datetime default null  
+) auto_increment 1;  
 ## category （博客类别表）
-create table category(
-	cid int primary key auto_increment,
-    cname varchar(20)
-) auto_increment=1001;
+create table category(  
+	cid int primary key auto_increment,  
+    cname varchar(20)  
+) auto_increment=1001;  
 ## review （文章评论表）
-create table review(
-	rid int primary key auto_increment,
-    cid int,
-    bid int,
-    rauthor varchar(20),
-    rcontent longtext,
-    rtime datetime
-) auto_increment 1;
+create table review(  
+	rid int primary key auto_increment,  
+    cid int,  
+    bid int,  
+    rauthor varchar(20),  
+    rcontent longtext,  
+    rtime datetime  
+) auto_increment 1;  
 ## collect （文章收藏表）
-create table collect(
-	id int primary key auto_increment,
-    cid int,
-    bid int,
-    cauthor varchar(20),
-    ctime datetime
-) auto_increment 1;
+create table collect(  
+	id int primary key auto_increment,  
+    cid int,  
+    bid int,  
+    cauthor varchar(20),  
+    ctime datetime  
+) auto_increment 1;  
 ## ulike (文章点赞表)
-create table ulike(
-	id int primary key auto_increment,
-    cid int,
-    bid int,
-    lauthor varchar(20),
-    ltime datetime
-) auto_increment 1;
+create table ulike(  
+	id int primary key auto_increment,  
+    cid int,  
+    bid int,  
+    lauthor varchar(20),  
+    ltime datetime  
+) auto_increment 1;  
 ## smenu （侧栏菜单表）
-create table smenu(
-	id int primary key,
-    pid int,
-    title varchar(50),
-    path varchar(150),
-    name varchar(150),
-    icon varchar(150)
+create table smenu(  
+	id int primary key,  
+    pid int,  
+    title varchar(50),  
+    path varchar(150),  
+    name varchar(150),  
+    icon varchar(150)  
 );
 ## banner (轮播图表)
-create table banner(
-	id int primary key auto_increment,
-    bannerUrl varchar(150),
-    bauthor varchar(20),
-    btime datetime
-) auto_increment 1;
+create table banner(    
+    id int primary key auto_increment,  
+    bannerUrl varchar(150),  
+    bauthor varchar(20),  
+    btime datetime  
+) auto_increment 1;  
 
 
 ##MySqL的常用Sql语句
